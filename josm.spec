@@ -1,4 +1,6 @@
-#
+# TODO:
+# - move .jar to %%{_javadir}?
+%include	/usr/lib/rpm/macros.java
 Summary:	Java OpenStreetMap Editor
 Summary(pl.UTF-8):	Edytor OpenStreetMap w Javie
 Name:		josm
@@ -11,7 +13,8 @@ Group:		Applications
 Source0:	http://josm.openstreetmap.de/download/%{name}-snapshot-%{version}.jar
 # Source0-md5:	e59c600a41719b38edb3108dce2ae871
 URL:		http://josm.openstreetmap.de/
-Requires:	jre >= 1.5
+BuildRequires:	rpm-javaprov
+Requires:	jre-X11 >= 1.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -41,5 +44,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/josm
 %{_datadir}/%{name}
