@@ -30,7 +30,7 @@ nodes, ways, metadata tags and relations from the OSM database.
 cat >josm <<EOF
 #!/bin/sh
 
-exec java -jar %{_datadir}/%{name}/%{name}-snapshot-%{version}.jar
+exec java -jar %{_datadir}/%{name}/%{name}-snapshot-%{version}.jar "$@"
 EOF
 
 %install
