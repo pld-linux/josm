@@ -27,16 +27,15 @@ nodes, ways, metadata tags and relations from the OSM database.
 %setup -q -c -T
 
 %build
-cat >josm <<EOF
+cat > josm <<'EOF'
 #!/bin/sh
-
-exec java -jar %{_datadir}/%{name}/%{name}-snapshot-%{version}.jar "\$@"
+exec java -jar %{_datadir}/%{name}/%{name}-snapshot-%{version}.jar ${1:+"$@"}
 EOF
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name}}
-install %{SOURCE0} $RPM_BUILD_ROOT%{_datadir}/%{name}/
+install %{SOURCE0} $RPM_BUILD_ROOT%{_datadir}/%{name}
 install josm $RPM_BUILD_ROOT%{_bindir}/josm
 
 %clean
