@@ -1,0 +1,5 @@
+- R: jre-X11
+- BR: rpm-javaprov
+- include java rpm macros
+- verbose files
+- TODO (where to install .jar? Why not in %{_javadir})
