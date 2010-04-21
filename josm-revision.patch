@@ -39,3 +39,4 @@
  		<property name="version.entry.commit.date" value="UNKNOWN"/>
  		<echo>Revision ${version.entry.commit.revision}</echo>
  		<copy file="CONTRIBUTION" todir="build"/>
+
