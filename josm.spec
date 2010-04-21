@@ -1,20 +1,22 @@
-# TODO:
-# - move .jar to %%{_javadir}?
 %include	/usr/lib/rpm/macros.java
 Summary:	Java OpenStreetMap Editor
 Summary(pl.UTF-8):	Edytor OpenStreetMap w Javie
 Name:		josm
-Version:	3094
+Version:	3196
 Release:	1
 License:	GPL v2+
 Group:		Applications
-# this should be the 'tested' snapshot, available also at
-# http://josm.openstreetmap.de/josm-tested.jar
-Source0:	http://josm.openstreetmap.de/download/%{name}-snapshot-%{version}.jar
-# Source0-md5:	f3ad62809ae18bc02e31b360c2d1fcce
+# this should be the 'tested' snapshot, as list on the web page
+# svn export -r%{version} http://josm.openstreetmap.de/svn/trunk josm-src-snapshot-%{version}
+Source0:	%{name}-src-snapshot-%{version}.tar.bz2
+# Source0-md5:	df1534ae026c94309227233aa16209c8
+Patch0:		%{name}-revision.patch
 URL:		http://josm.openstreetmap.de/
+BuildRequires:	ant
+%buildrequires_jdk
 BuildRequires:	rpm-javaprov
-Requires:	jre-X11 >= 1.5
+Requires:	jre-X11 >= 1.6
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -24,18 +26,25 @@ data from the OSM database as well as loading and editing existing
 nodes, ways, metadata tags and relations from the OSM database.
 
 %prep
-%setup -q -c -T
+%setup -qn %{name}-src-snapshot-%{version}
+%patch0 -p1
 
 %build
+echo "%{version}" > rpm_version
+%ant
+
 cat > josm <<'EOF'
 #!/bin/sh
-exec java -jar %{_datadir}/%{name}/%{name}-snapshot-%{version}.jar ${1:+"$@"}
+exec java -jar %{_datadir}/%{name}/%{name}-custom.jar ${1:+"$@"}
 EOF
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name}}
-install %{SOURCE0} $RPM_BUILD_ROOT%{_datadir}/%{name}
+
+# not into %{_javadir}, as it is not a library, but a stanalone application
+install dist/%{name}-custom.jar $RPM_BUILD_ROOT%{_datadir}/%{name}
 install josm $RPM_BUILD_ROOT%{_bindir}/josm
 
 %clean
