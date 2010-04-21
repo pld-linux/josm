@@ -10,7 +10,7 @@ Group:		Applications
 # svn export -r%{version} http://josm.openstreetmap.de/svn/trunk josm-src-snapshot-%{version}
 Source0:	%{name}-src-snapshot-%{version}.tar.bz2
 # Source0-md5:	df1534ae026c94309227233aa16209c8
-Patch0:		%{name}-revision.patch
+Patch0:		%{name}-version.patch
 URL:		http://josm.openstreetmap.de/
 BuildRequires:	ant
 %buildrequires_jdk
