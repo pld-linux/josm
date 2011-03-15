@@ -2,16 +2,15 @@
 Summary:	Java OpenStreetMap Editor
 Summary(pl.UTF-8):	Edytor OpenStreetMap w Javie
 Name:		josm
-Version:	3751
+Version:	3966
 Release:	1
 License:	GPL v2+
 Group:		Applications
 # this should be the 'tested' snapshot, as list on the web page
 # svn export -r%{version} http://josm.openstreetmap.de/svn/trunk josm-src-snapshot-%{version}
 Source0:	%{name}-src-snapshot-%{version}.tar.bz2
-# Source0-md5:	1a65b0edc7b38f0982b30eb827b193cf
+# Source0-md5:	5b8b85dcc5330aefa8dedea70eb84a79
 Patch0:		%{name}-version.patch
-Patch1:		%{name}-exception.patch
 URL:		http://josm.openstreetmap.de/
 BuildRequires:	ant
 %buildrequires_jdk
@@ -30,7 +29,6 @@ nodes, ways, metadata tags and relations from the OSM database.
 %setup -qn %{name}-src-snapshot-%{version}
 %undos build.xml
 %patch0 -p1
-%patch1 -p1
 
 %build
 echo "%{version}" > rpm_version
