@@ -36,3 +36,14 @@ diff -dur josm-src-snapshot-4399.orig/build.xml josm-src-snapshot-4399/build.xml
          <property name="version.entry.commit.revision" value="UNKNOWN"/>
          <property name="version.entry.commit.date" value="UNKNOWN"/>
          <echo>Revision ${version.entry.commit.revision}</echo>
+--- josm-src-snapshot-4399/build.xml.orig	2011-10-02 12:16:08.000000000 +0200
++++ josm-src-snapshot-4399/build.xml	2011-10-02 12:21:54.312301732 +0200
+@@ -82,7 +82,7 @@
+             <!-- add attribute excludes="**/*BZip2*,**/*Bzip2*" to create a non-bzip2 supporting jar -->
+             <manifest>
+                 <attribute name="Main-class" value="JOSM"/>
+-                <attribute name="Main-Version" value="${version.entry.commit.revision} SVN"/>
++                <attribute name="Main-Version" value="${version.entry.commit.revision}"/>
+                 <attribute name="Main-Date" value="${version.entry.commit.date}"/>
+             </manifest>
+             <zipfileset dir="images" prefix="images"/>

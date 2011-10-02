@@ -1,15 +1,20 @@
+#
+# TODO:
+#	- fix the startup screen not to ask for update when version is equal to current 'tested'
+#	  (probably we need to tweak the version reported to the server)
+#
 %include	/usr/lib/rpm/macros.java
 Summary:	Java OpenStreetMap Editor
 Summary(pl.UTF-8):	Edytor OpenStreetMap w Javie
 Name:		josm
 Version:	4399
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Applications
 # this should be the 'tested' snapshot, as list on the web page
 # svn export -r%{version} http://josm.openstreetmap.de/svn/trunk josm-src-snapshot-%{version}
 Source0:	%{name}-src-snapshot-%{version}.tar.bz2
-# Source0-md5:	a838d33a55e0fa17750987909b7a98e7
+# Source0-md5:	17d2cbb743378c4728d8ca66caa2b43b
 Patch0:		%{name}-version.patch
 URL:		http://josm.openstreetmap.de/
 BuildRequires:	ant
@@ -31,7 +36,7 @@ nodes, ways, metadata tags and relations from the OSM database.
 %patch0 -p1
 
 %build
-echo "%{version}" > rpm_version
+echo -n "%{version}" > rpm_version
 %ant
 
 cat > josm <<'EOF'
