@@ -15,7 +15,7 @@ URL:		http://josm.openstreetmap.de/
 # this should be the 'tested' snapshot, as list on the web page
 # svn export -r%{version} http://josm.openstreetmap.de/svn/trunk josm-src-snapshot-%{version}
 Source0:	%{name}-src-snapshot-%{version}.tar.bz2
-# Source0-md5:	6f5dcbf7e0a8e9ed9d895118049378ae
+# Source0-md5:	ab91c7c302fb1716e354d3810461740b
 Patch0:		%{name}-version.patch
 BuildRequires:	ant
 %buildrequires_jdk
