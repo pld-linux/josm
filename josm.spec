@@ -7,8 +7,8 @@
 Summary:	Java OpenStreetMap Editor
 Summary(pl.UTF-8):	Edytor OpenStreetMap w Javie
 Name:		josm
-Version:	5047
-Release:	1
+Version:	5181
+Release:	0.1
 License:	GPL v2+
 Group:		Applications
 URL:		http://josm.openstreetmap.de/
