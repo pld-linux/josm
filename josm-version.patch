@@ -1,49 +1,24 @@
-diff -dur josm-src-snapshot-4399.orig/build.xml josm-src-snapshot-4399/build.xml
---- josm-src-snapshot-4399.orig/build.xml	2011-09-16 12:58:47.000000000 +0200
-+++ josm-src-snapshot-4399/build.xml	2011-09-16 14:36:01.000000000 +0200
-@@ -41,17 +41,7 @@
- 	  -->
-     <target name="create-revision">
+--- josm-src-snapshot-6891/build.xml.orig	2014-03-13 21:01:58.099552306 +0100
++++ josm-src-snapshot-6891/build.xml	2014-03-13 21:04:27.126220327 +0100
+@@ -72,10 +72,9 @@
+     <!--
+       ** Creates the REVISION file to be included in the distribution
+     -->
+-    <target name="create-revision" depends="init-svn-revision-xml, init-git-revision-xml">
++    <target name="create-revision">
          <property name="revision.dir" value="${build.dir}"/>
--        <exec append="false" output="REVISION.XML" executable="svn" failifexecutionfails="false">
--            <env key="LANG" value="C"/>
--            <arg value="info"/>
--            <arg value="--xml"/>
--            <arg value="."/>
--        </exec>
 -        <xmlproperty file="REVISION.XML" prefix="version" keepRoot="false" collapseAttributes="true"/>
 -        <delete file="REVISION.XML"/>
--        <tstamp>
--            <format property="build.tstamp" pattern="yyyy-MM-dd HH:mm:ss"/>
--        </tstamp>
 +        <loadfile property="version.entry.commit.revision" srcFile="rpm_version" />
-         <property name="version.entry.commit.revision" value="UNKNOWN"/>
-         <mkdir dir="${revision.dir}"/>
-         <echo file="${revision.dir}/REVISION">
-@@ -62,14 +52,7 @@
- </echo>
-     </target>
-     <target name="dist" depends="compile,create-revision">
--        <exec append="false" output="REVISION" executable="svn" failifexecutionfails="false">
--            <env key="LANG" value="C"/>
--            <arg value="info"/>
--            <arg value="--xml"/>
--            <arg value="."/>
--        </exec>
--        <xmlproperty file="REVISION" prefix="version" keepRoot="false" collapseAttributes="true"/>
--        <delete file="REVISION"/>
-+        <loadfile property="version.entry.commit.revision" srcFile="rpm_version" />
-         <property name="version.entry.commit.revision" value="UNKNOWN"/>
-         <property name="version.entry.commit.date" value="UNKNOWN"/>
-         <echo>Revision ${version.entry.commit.revision}</echo>
---- josm-src-snapshot-4399/build.xml.orig	2011-10-02 12:16:08.000000000 +0200
-+++ josm-src-snapshot-4399/build.xml	2011-10-02 12:21:54.312301732 +0200
-@@ -82,7 +82,7 @@
+         <tstamp>
+             <format property="build.tstamp" pattern="yyyy-MM-dd HH:mm:ss"/>
+         </tstamp>
+@@ -115,7 +114,7 @@
              <!-- add attribute excludes="**/*BZip2*,**/*Bzip2*" to create a non-bzip2 supporting jar -->
              <manifest>
                  <attribute name="Main-class" value="JOSM"/>
 -                <attribute name="Main-Version" value="${version.entry.commit.revision} SVN"/>
 +                <attribute name="Main-Version" value="${version.entry.commit.revision}"/>
                  <attribute name="Main-Date" value="${version.entry.commit.date}"/>
-             </manifest>
-             <zipfileset dir="images" prefix="images"/>
+                 <attribute name="Permissions" value="all-permissions"/>
+                 <attribute name="Codebase" value="josm.openstreetmap.de"/>
