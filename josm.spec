@@ -1,4 +1,3 @@
-%include	/usr/lib/rpm/macros.java
 Summary:	Java OpenStreetMap Editor
 Summary(pl.UTF-8):	Edytor OpenStreetMap w Javie
 Name:		josm
