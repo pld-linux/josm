@@ -27,7 +27,7 @@ nodes, ways, metadata tags and relations from the OSM database.
 %prep
 %setup -qn %{name}-src-snapshot-%{version}
 %undos build.xml
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 echo -n "%{version}" > rpm_version
